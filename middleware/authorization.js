@@ -22,6 +22,11 @@ class Authorization {
     }
   }
 
+  static isEngineerOrSysop(req) {
+    const { userType } = req.decode;  // Token'dan userType alıyoruz
+    return userType === 'ENGINEER' || userType === 'SYSOP';
+  }
+
   static async limitedAuthControl(req, res, next) {
     try {
       const auth =

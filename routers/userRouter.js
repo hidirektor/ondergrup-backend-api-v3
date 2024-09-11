@@ -31,10 +31,10 @@ router.post('/uploadProfilePhoto', verifyToken.tokenControl, userController.uplo
 router.post('/addUser', verifyToken.tokenControl, userValidator.insert, userController.addUserAsync);
 
 // Kullanıcıyı siler (ENGINEER ve SYSOP)
-router.post('/deleteUser', verifyToken.tokenControl, userValidator.find, userController.deleteUserAsync);
+router.post('/deleteUser', verifyToken.tokenControl, userValidator.findByUserName, userController.deleteUserAsync);
 
 // Kullanıcı durumunu günceller (ENGINEER ve SYSOP)
-router.post('/updateUserStatus', verifyToken.tokenControl, userValidator.find, userController.updateUserStatusAsync);
+router.post('/updateUserStatus', verifyToken.tokenControl, userValidator.findByUserName, userController.updateUserStatusAsync);
 
 // Kullanıcı rolünü günceller (ENGINEER ve SYSOP)
 router.post('/updateRole', verifyToken.tokenControl, userValidator.find, userController.updateRoleAsync);

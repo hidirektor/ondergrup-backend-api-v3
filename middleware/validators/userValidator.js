@@ -12,9 +12,24 @@ class UserValidator extends CommonValidator {
     try {
       await joi
         .object({
-          id: joi.number().min(1).required()
+          userID: joi.required(),
+          isActive: joi.boolean()
         })
-        .validateAsync({ id: parseInt(req.params.id) });
+        .validateAsync( req.body );
+      next();
+    } catch (err) {
+      res.status(HttpStatusCode.EXPECTATION_FAILED).send(err.message);
+    }
+  }
+
+  static async findByUserName(req, res, next) {
+    try {
+      await joi
+        .object({
+          userName: joi.required(),
+          isActive: joi.boolean()
+        })
+        .validateAsync( req.body );
       next();
     } catch (err) {
       res.status(HttpStatusCode.EXPECTATION_FAILED).send(err.message);
@@ -25,21 +40,18 @@ class UserValidator extends CommonValidator {
     try {
       await joi
         .object({
-          id: joi.number().required(),
-          userName: joi.string().max(100).required(),
+          userID: joi.required(),
+          userName: joi.string().max(100),
+          userData: joi.required(),
           nameSurname: joi
             .string()
             .max(100)
-            .pattern(new RegExp('^[A-Za-zÇçÖöŞşÜüĞğİı ]+$'))
-            .required(),
-          eMail: joi.string().email().max(100).required(),
-          phoneNumber: joi.string().min(10).max(15).required(),
+            .pattern(new RegExp('^[A-Za-zÇçÖöŞşÜüĞğİı ]+$')),
+          eMail: joi.string().email().max(100),
+          phoneNumber: joi.string().min(10).max(15),
           companyName: joi.string().max(100),
-          userType: joi
-            .string()
-            .valid(roles.SYSOP, roles.ENGINEER, roles.TECHNICIAN, roles.NORMAL)
-            .required(),
           isActive: joi.boolean(),
+          password: joi.string()
         })
         .validateAsync(req.body);
       next();
