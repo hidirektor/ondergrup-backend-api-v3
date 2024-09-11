@@ -1,0 +1,30 @@
+### Login Endpoint
+POST {{baseUrl}}/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "userName": "hidirektor@gmail.com",
+    "password": "asdasd"
+}
+
+###
+
+### Token Decode Endpoint
+GET {{baseUrl}}/token-decode HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+###
+
+### Sign-Up Endpoint
+POST {{baseUrl}}/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "userName": "hidirektor",
+    "nameSurname": "Halil İbrahim Direktör",
+    "email": "hidirektor@gmail.com",
+    "phoneNumber": "05417410309",
+    "companyName": "Lebara Mobile UK",
+    "password": "asdasd"
+}
