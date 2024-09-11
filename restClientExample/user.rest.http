@@ -1,0 +1,146 @@
+###
+# Get All Users (ENGINEER ve SYSOP yetkisi gerektirir)
+GET {{baseUrl}}/getAllUsers HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+###
+
+# Get User Preferences (Kullanıcı kendi preferences'ını alabilir)
+POST {{baseUrl}}/getPreferences HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+{
+    "userID": "68ac9c88-8cf3-4bc6-8d57-7ff44e2a3634"
+}
+
+###
+
+# Get User Profile (Kullanıcı kendi profilini alabilir)
+POST {{baseUrl}}/getProfile HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+{
+    "userID": "68ac9c88-8cf3-4bc6-8d57-7ff44e2a3634"
+}
+
+###
+
+# Get User Profile Photo (Kullanıcı kendi profil fotoğrafını alabilir)
+GET {{baseUrl}}/getProfilePhoto/{{userName}} HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+###
+
+# Update User Preferences (Kullanıcı kendi preferences'ını güncelleyebilir)
+POST {{baseUrl}}/updatePreferences HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+{
+    "userID": "68ac9c88-8cf3-4bc6-8d57-7ff44e2a3634",
+    "preferencesData": {
+        "language": false,
+        "nightMode": true
+    }
+}
+
+###
+
+# Update User Profile (Kullanıcı kendi profilini güncelleyebilir)
+POST {{baseUrl}}/updateProfile HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+{
+    "userID": "68ac9c88-8cf3-4bc6-8d57-7ff44e2a3634",
+    "userData": {
+        "nameSurname": "Can Karademir",
+        "eMail": "can@gmail.com",
+        "companyName": "Tech Corp",
+        "password": "12345"
+    }
+}
+
+###
+
+# Upload User Profile Photo (Kullanıcı kendi profil fotoğrafını güncelleyebilir)
+POST {{baseUrl}}/uploadProfilePhoto HTTP/1.1
+Content-Type: multipart/form-data
+token: {{token}}
+
+{
+    "userName": "can",
+    "file": <profile-photo-file>
+}
+
+###
+
+# Add New User (ENGINEER ve SYSOP yetkisi gerektirir)
+POST {{baseUrl}}/addUser HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+{
+    "userName": "john.doe",
+    "userType": "ENGINEER",
+    "nameSurname": "John Doe",
+    "eMail": "john@company.com",
+    "phoneNumber": "1234567890",
+    "companyName": "Company Name",
+    "password": "password123"
+}
+
+###
+
+# Delete User (ENGINEER ve SYSOP yetkisi gerektirir)
+POST {{baseUrl}}/deleteUser HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+{
+    "userName": "john.doe"
+}
+
+###
+
+# Update User Status (ENGINEER ve SYSOP yetkisi gerektirir)
+POST {{baseUrl}}/updateUserStatus HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+{
+    "userName": "john.doe",
+    "isActive": 1
+}
+
+###
+
+# Update User Role (ENGINEER ve SYSOP yetkisi gerektirir)
+POST {{baseUrl}}/updateRole HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+{
+    "userName": "john.doe",
+    "newRole": "TECHNICIAN"
+}
+
+###
+
+# Update User (ENGINEER ve SYSOP yetkisi gerektirir)
+PUT {{baseUrl}}/updateUser/{{id}} HTTP/1.1
+Content-Type: application/json
+token: {{token}}
+
+{
+    "userData": {
+        "nameSurname": "John Doe",
+        "eMail": "john@newcompany.com",
+        "companyName": "New Company Name",
+        "password": "newpassword123"
+    }
+}
